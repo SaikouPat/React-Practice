@@ -1,0 +1,11 @@
+.Todo{ 
+    background-color: rgb(7, 7, 59);
+    min-height:400px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+} 
