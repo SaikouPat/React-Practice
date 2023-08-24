@@ -20,27 +20,53 @@ const Todo = () => {
     { name: "Goodbye", id: `${handleCount}` },
   ]);
 
+  const [rows, setRows] = useState([]);
+
   const list = state.map((item) => {
+    return CardItem(lohg, item.id, item.id);
+  });
+
+  const CardItem = ({ src, title, content }) => {
     return (
-      <Card style={{ width: "18rem", overflow: "hidden" }} key={item.id}>
-        <Card.Img variant="top" src={lohg} />
+      <Card>
         <Card.Body>
-          <Container>
-            <Card.Text>
-              <Row>
-                <Col sm={10}>{item.name + ""}</Col>
-                <Col sm={2}>
-                  <Button size="sm" variant="dark" width="5px">
-                    X
-                  </Button>
-                </Col>
-              </Row>
-            </Card.Text>
-          </Container>
+          <Card.Img variant="top" src={src} />
+          <Card.Title>{title}</Card.Title>
+          <Card.Text>{content}</Card.Text>
         </Card.Body>
       </Card>
     );
-  });
+  };
+
+  const addRow = () => {
+    const rows = list.length / 3;
+
+    for (let i = 0; i < rows; i++) {
+      const newRow = [
+        { title: list[0].card.t, content: "Content for Card 1" },
+        { title: "Card 2", content: "Content for Card 2" },
+        { title: "Card 3", content: "Content for Card 3" },
+      ];
+      setRows([...rows, newRow]);
+    }
+  };
+
+  const createRows = () => {
+    const rows = list.length / 3(Int32Array);
+    return (
+      <Container>
+        {rows.map((row, rowIndex) => (
+          <Row key={rowIndex}>
+            {row.map((card, cardIndex) => (
+              <Col md={4} key={cardIndex}>
+                <CardItem title={card.title} content={card.content} />
+              </Col>
+            ))}
+          </Row>
+        ))}
+      </Container>
+    );
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
